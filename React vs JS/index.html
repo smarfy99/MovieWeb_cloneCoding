@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script>
+    //   html태그와 같은 이름이어야 함  createElement안
+    const root = document.getElementById("root");
+    const span = React.createElement(
+      "h3",
+      { onmouseEnter: () => console.log("mouse enter") },
+      "Hello, span"
+    );
+    const btn = React.createElement(
+      "button",
+      { onClick: () => console.lof("im clicked") },
+      "click me"
+    );
+    // span과 btn을 동시에 root에 넣고 싶으면 div 만들어서 넣어준다
+    const container = React.createElement("div", null, [span, btn]);
+    ReactDOM.render(container, root);
+  </script>
+</html>
