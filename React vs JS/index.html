@@ -3,34 +3,39 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
-    //   html태그와 같은 이름이어야 함  createElement안
+    function Btn({ text, changeValue }) {
+      return (
+        <button
+          onClick={changeValue}
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {text}
+        </button>
+      );
+    }
+    const App = () => {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
+      return (
+        <div>
+          <Btn text={value} onClick={changeValue} />
+          <Btn text="Continue" />
+        </div>
+      );
+    };
     const root = document.getElementById("root");
-    const Title = () => (
-      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-        Hello title
-      </h3>
-    );
-    const Button = () => (
-      <button
-        style={{ backgroundColor: "tomato" }}
-        onClick={() => console.log("im clicked")}
-      >
-        Click me
-      </button>
-    );
-    // span과 btn을 동시에 root에 넣고 싶으면 div 만들어서 넣어준다
-    // const container = React.createElement("div", null, [Title, button]);
-    const Container = (
-      <div>
-        <Title />
-        <Button />
-      </div>
-    );
-    ReactDOM.render(Container, root);
+    ReactDOM.render(<App />, root);
   </script>
 </html>
