@@ -5,8 +5,8 @@ const Button = ({ text }) => {
   return <div>{text}</div>;
 };
 
-Button.propTypes={
-    text: propTypes.string.isRequired
-}
+Button.propTypes = {
+  text: propTypes.string.isRequired,
+};
 
 export default Button;
